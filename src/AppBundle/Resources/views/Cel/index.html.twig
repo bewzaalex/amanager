@@ -1,0 +1,91 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Cel list</h1>
+
+    {# total items count #}
+    <div class="count">
+        {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table class="records_list" border="1">
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'event.id') }}</th>
+                <th>Eventtype</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Eventtime', 'event.eventtime') }}</th>
+                <th>Cid_name</th>
+                <th>Cid_num</th>
+                <th>Cid_ani</th>
+                <th>Cid_rdnis</th>
+                <th>Cid_dnid</th>
+                <th>Exten</th>
+                <th>Context</th>
+                <th>Channame</th>
+                <th>Src</th>
+                <th>Dst</th>
+                <th>Channel</th>
+                <th>Dstchannel</th>
+                <th>Appname</th>
+                <th>Appdata</th>
+                <th>Amaflags</th>
+                <th>Accountcode</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Uniqueid', 'event.uniqueid') }}</th>
+                <th>Linkedid</th>
+                <th>Peer</th>
+                <th>Userdeftype</th>
+                <th>Eventextra</th>
+                <th>Userfield</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cel in pagination %}
+            <tr>
+                <td><a href="{{ path('cel_show', { 'id': cel.id }) }}">{{ cel.id }}</a></td>
+                <td>{{ cel.eventtype }}</td>
+                <td>{% if cel.eventtime %}{{ cel.eventtime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ cel.cidname }}</td>
+                <td>{{ cel.cidnum }}</td>
+                <td>{{ cel.cidani }}</td>
+                <td>{{ cel.cidrdnis }}</td>
+                <td>{{ cel.ciddnid }}</td>
+                <td>{{ cel.exten }}</td>
+                <td>{{ cel.context }}</td>
+                <td>{{ cel.channame }}</td>
+                <td>{{ cel.src }}</td>
+                <td>{{ cel.dst }}</td>
+                <td>{{ cel.channel }}</td>
+                <td>{{ cel.dstchannel }}</td>
+                <td>{{ cel.appname }}</td>
+                <td>{{ cel.appdata }}</td>
+                <td>{{ cel.amaflags }}</td>
+                <td>{{ cel.accountcode }}</td>
+                <td>{{ cel.uniqueid }}</td>
+                <td>{{ cel.linkedid }}</td>
+                <td>{{ cel.peer }}</td>
+                <td>{{ cel.userdeftype }}</td>
+                <td>{{ cel.eventextra }}</td>
+                <td>{{ cel.userfield }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('cel_show', { 'id': cel.id }) }}">show</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    {{ dump(pagination) }}
+
+    {{ dump(request) }}
+
+    {% endblock %}

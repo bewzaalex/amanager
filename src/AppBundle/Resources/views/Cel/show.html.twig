@@ -1,0 +1,118 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Cel</h1>
+
+    <table class="record_properties" border="1">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Eventtype</th>
+                <td>{{ entity.eventtype }}</td>
+            </tr>
+            <tr>
+                <th>Eventtime</th>
+                <td>{{ entity.eventtime|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Cid_name</th>
+                <td>{{ entity.cidname }}</td>
+            </tr>
+            <tr>
+                <th>Cid_num</th>
+                <td>{{ entity.cidnum }}</td>
+            </tr>
+            <tr>
+                <th>Cid_ani</th>
+                <td>{{ entity.cidani }}</td>
+            </tr>
+            <tr>
+                <th>Cid_rdnis</th>
+                <td>{{ entity.cidrdnis }}</td>
+            </tr>
+            <tr>
+                <th>Cid_dnid</th>
+                <td>{{ entity.ciddnid }}</td>
+            </tr>
+            <tr>
+                <th>Exten</th>
+                <td>{{ entity.exten }}</td>
+            </tr>
+            <tr>
+                <th>Context</th>
+                <td>{{ entity.context }}</td>
+            </tr>
+            <tr>
+                <th>Channame</th>
+                <td>{{ entity.channame }}</td>
+            </tr>
+            <tr>
+                <th>Src</th>
+                <td>{{ entity.src }}</td>
+            </tr>
+            <tr>
+                <th>Dst</th>
+                <td>{{ entity.dst }}</td>
+            </tr>
+            <tr>
+                <th>Channel</th>
+                <td>{{ entity.channel }}</td>
+            </tr>
+            <tr>
+                <th>Dstchannel</th>
+                <td>{{ entity.dstchannel }}</td>
+            </tr>
+            <tr>
+                <th>Appname</th>
+                <td>{{ entity.appname }}</td>
+            </tr>
+            <tr>
+                <th>Appdata</th>
+                <td>{{ entity.appdata }}</td>
+            </tr>
+            <tr>
+                <th>Amaflags</th>
+                <td>{{ entity.amaflags }}</td>
+            </tr>
+            <tr>
+                <th>Accountcode</th>
+                <td>{{ entity.accountcode }}</td>
+            </tr>
+            <tr>
+                <th>Uniqueid</th>
+                <td>{{ entity.uniqueid }}</td>
+            </tr>
+            <tr>
+                <th>Linkedid</th>
+                <td>{{ entity.linkedid }}</td>
+            </tr>
+            <tr>
+                <th>Peer</th>
+                <td>{{ entity.peer }}</td>
+            </tr>
+            <tr>
+                <th>Userdeftype</th>
+                <td>{{ entity.userdeftype }}</td>
+            </tr>
+            <tr>
+                <th>Eventextra</th>
+                <td>{{ entity.eventextra }}</td>
+            </tr>
+            <tr>
+                <th>Userfield</th>
+                <td>{{ entity.userfield }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cel') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
