@@ -17,9 +17,10 @@ class CelSearchType extends AbstractType
         $builder
             ->add('id', 'number', array('required' => false))
             ->add('eventtype', 'text', array('required' => false))
+            // FIXME: set correct datetime type
             ->add('eventtime', 'datetime', array(
-                
-                'input'  => 'timestamp',
+                'date_format' => 'yyyy-MM-dd  HH:mm',
+                'format' => 'yyyy-MM-dd HH:mm',
                 'widget' => 'choice',
                 'required' => false,
             ))

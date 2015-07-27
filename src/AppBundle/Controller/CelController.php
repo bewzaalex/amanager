@@ -44,69 +44,131 @@ class CelController extends Controller
             $query = $repository->createQueryBuilder('event');
 
             if ($search['appbundle_cel']['id'] != "") {
-                $query->andWhere('event.id like :id')->setParameter('id', '%'.$search['appbundle_cel']['id'].'%');
+                $query->andWhere('event.id like :id')
+                    ->setParameter('id', '%'.$search['appbundle_cel']['id'].'%');
+            }
+
+            if ($search['appbundle_cel']['eventtype'] != "") {
+                $query->andWhere('event.eventtype like :eventtype')
+                    ->setParameter('eventtype', '%'.$search['appbundle_cel']['eventtype'].'%');
+            }
+
+            // FIXME: DateTime format in CelSearchType
+            // if ($search['appbundle_cel']['eventtime'] != "") {
+            //     $query->andWhere('event.eventtime = :eventtime')
+            //         ->setParameter('eventtime', $search['appbundle_cel']['eventtime']);
+            // }
+
+            if ($search['appbundle_cel']['cid_name'] != "") {
+                $query->andWhere('event.cid_name like :cid_name')
+                    ->setParameter('cid_name', '%'.$search['appbundle_cel']['cid_name'].'%');
+            }
+
+            if ($search['appbundle_cel']['cid_num'] != "") {
+                $query->andWhere('event.cid_num like :cid_num')
+                    ->setParameter('cid_num', '%'.$search['appbundle_cel']['cid_num'].'%');
+            }
+
+            if ($search['appbundle_cel']['cid_ani'] != "") {
+                $query->andWhere('event.cid_ani like :cid_ani')
+                    ->setParameter('cid_ani', '%'.$search['appbundle_cel']['cid_ani'].'%');
+            }
+
+            if ($search['appbundle_cel']['cid_rdnis'] != "") {
+                $query->andWhere('event.cid_rdnis like :cid_rdnis')
+                    ->setParameter('cid_rdnis', '%'.$search['appbundle_cel']['cid_rdnis'].'%');
+            }
+
+            if ($search['appbundle_cel']['cid_dnid'] != "") {
+                $query->andWhere('event.cid_dnid like :cid_dnid')
+                    ->setParameter('cid_dnid', '%'.$search['appbundle_cel']['cid_dnid'].'%');
+            }
+
+            if ($search['appbundle_cel']['exten'] != "") {
+                $query->andWhere('event.exten like :exten')
+                    ->setParameter('exten', '%'.$search['appbundle_cel']['exten'].'%');
+            }
+
+            if ($search['appbundle_cel']['context'] != "") {
+                $query->andWhere('event.context like :context')
+                    ->setParameter('context', '%'.$search['appbundle_cel']['context'].'%');
+            }
+
+            if ($search['appbundle_cel']['channame'] != "") {
+                $query->andWhere('event.channame like :channame')
+                    ->setParameter('channame', '%'.$search['appbundle_cel']['channame'].'%');
+            }
+
+            if ($search['appbundle_cel']['src'] != "") {
+                $query->andWhere('event.src like :src')
+                    ->setParameter('src', '%'.$search['appbundle_cel']['src'].'%');
+            }
+
+            if ($search['appbundle_cel']['dst'] != "") {
+                $query->andWhere('event.dst like :dst')
+                    ->setParameter('dst', '%'.$search['appbundle_cel']['dst'].'%');
+            }
+
+            if ($search['appbundle_cel']['channel'] != "") {
+                $query->andWhere('event.channel like :channel')
+                    ->setParameter('channel', '%'.$search['appbundle_cel']['channel'].'%');
+            }
+
+            if ($search['appbundle_cel']['dstchannel'] != "") {
+                $query->andWhere('event.dstchannel like :dstchannel')
+                    ->setParameter('dstchannel', '%'.$search['appbundle_cel']['dstchannel'].'%');
+            }
+
+            if ($search['appbundle_cel']['appname'] != "") {
+                $query->andWhere('event.appname like :appname')
+                    ->setParameter('appname', '%'.$search['appbundle_cel']['appname'].'%');
+            }
+
+            if ($search['appbundle_cel']['appdata'] != "") {
+                $query->andWhere('event.appdata like :appdata')
+                    ->setParameter('appdata', '%'.$search['appbundle_cel']['appdata'].'%');
+            }
+
+            if ($search['appbundle_cel']['amaflags'] != "") {
+                $query->andWhere('event.amaflags like :amaflags')
+                    ->setParameter('amaflags', '%'.$search['appbundle_cel']['amaflags'].'%');
+            }
+
+            if ($search['appbundle_cel']['accountcode'] != "") {
+                $query->andWhere('event.accountcode like :accountcode')
+                    ->setParameter('accountcode', '%'.$search['appbundle_cel']['accountcode'].'%');
             }
 
             if ($search['appbundle_cel']['uniqueid'] != "") {
-                $query->andWhere('event.uniqueid = :uniqueid')->setParameter('uniqueid', $search['appbundle_cel']['uniqueid']);
+                $query->andWhere('event.uniqueid like :uniqueid')
+                    ->setParameter('uniqueid', '%'.$search['appbundle_cel']['uniqueid'].'%');
             }
 
-            // $query = $em->createQuery(
-            //     'SELECT event
-            //     FROM AppBundle:Cel event
-            //     WHERE event.id LIKE :id
-            //     OR event.eventtype LIKE :eventtype
-            //     OR event.eventtime LIKE :eventtime
-            //     OR event.cid_name LIKE :cid_name
-            //     OR event.cid_num LIKE :cid_num
-            //     OR event.cid_ani LIKE :cid_ani
-            //     OR event.cid_rdnis LIKE :cid_rdnis
-            //     OR event.cid_dnid LIKE :cid_dnid
-            //     OR event.exten LIKE :exten
-            //     OR event.context LIKE :context
-            //     OR event.channame LIKE :channame
-            //     OR event.src LIKE :src
-            //     OR event.dst LIKE :dst
-            //     OR event.channel LIKE :channel
-            //     OR event.dstchannel LIKE :dstchannel
-            //     OR event.appname LIKE :appname
-            //     OR event.appdata LIKE :appdata
-            //     OR event.amaflags LIKE :amaflags
-            //     OR event.accountcode LIKE :accountcode
-            //     OR event.uniqueid LIKE :uniqueid
-            //     OR event.linkedid LIKE :linkedid
-            //     OR event.peer LIKE :peer
-            //     OR event.userdeftype LIKE :userdeftype
-            //     OR event.eventextra LIKE :eventextra
-            //     OR event.userfield LIKE :userfield')
-            //     ->setParameter('id', $search['appbundle_cel']['id'])
-            //     ->setParameter('eventtype', $search['appbundle_cel']['eventtype'])
-            //     ->setParameter('eventtime', $search['appbundle_cel']['eventtime'])
-            //     ->setParameter('cid_name', $search['appbundle_cel']['cid_name'])
-            //     ->setParameter('cid_num', $search['appbundle_cel']['cid_num'])
-            //     ->setParameter('cid_ani', $search['appbundle_cel']['cid_ani'])
-            //     ->setParameter('cid_rdnis', $search['appbundle_cel']['cid_rdnis'])
-            //     ->setParameter('cid_dnid', $search['appbundle_cel']['cid_dnid'])
-            //     ->setParameter('exten', $search['appbundle_cel']['exten'])
-            //     ->setParameter('context', $search['appbundle_cel']['context'])
-            //     ->setParameter('channame', $search['appbundle_cel']['channame'])
-            //     ->setParameter('src', $search['appbundle_cel']['src'])
-            //     ->setParameter('dst', $search['appbundle_cel']['dst'])
-            //     ->setParameter('channel', $search['appbundle_cel']['channel'])
-            //     ->setParameter('dstchannel', $search['appbundle_cel']['dstchannel'])
-            //     ->setParameter('appname', $search['appbundle_cel']['appname'])
-            //     ->setParameter('appdata', $search['appbundle_cel']['appdata'])
-            //     ->setParameter('amaflags', $search['appbundle_cel']['amaflags'])
-            //     ->setParameter('accountcode', $search['appbundle_cel']['accountcode'])
-            //     ->setParameter('uniqueid', $search['appbundle_cel']['uniqueid'])
-            //     ->setParameter('linkedid', $search['appbundle_cel']['linkedid'])
-            //     ->setParameter('peer', $search['appbundle_cel']['peer'])
-            //     ->setParameter('userdeftype', $search['appbundle_cel']['userdeftype'])
-            //     ->setParameter('eventextra', $search['appbundle_cel']['eventextra'])
-            //     ->setParameter('userfield', $search['appbundle_cel']['userfield'])
-            // ;
+            if ($search['appbundle_cel']['linkedid'] != "") {
+                $query->andWhere('event.linkedid like :linkedid')
+                    ->setParameter('linkedid', '%'.$search['appbundle_cel']['linkedid'].'%');
+            }
+
+            if ($search['appbundle_cel']['peer'] != "") {
+                $query->andWhere('event.peer like :peer')
+                    ->setParameter('peer', '%'.$search['appbundle_cel']['peer'].'%');
+            }
+
+            if ($search['appbundle_cel']['userdeftype'] != "") {
+                $query->andWhere('event.userdeftype like :userdeftype')
+                    ->setParameter('userdeftype', '%'.$search['appbundle_cel']['userdeftype'].'%');
+            }
+
+            if ($search['appbundle_cel']['eventextra'] != "") {
+                $query->andWhere('event.eventextra like :eventextra')
+                    ->setParameter('eventextra', '%'.$search['appbundle_cel']['eventextra'].'%');
+            }
+
+            if ($search['appbundle_cel']['userfield'] != "") {
+                $query->andWhere('event.userfield like :userfield')
+                    ->setParameter('userfield', '%'.$search['appbundle_cel']['userfield'].'%');
+            }
         }
-        
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

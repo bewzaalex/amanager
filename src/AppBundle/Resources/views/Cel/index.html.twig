@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Cel list</h1>
+    <h1>Channel Event Log</h1>
 
     {# total items count #}
     <div class="count">
-        {{ pagination.getTotalItemCount }}
+        Total events: {{ pagination.getTotalItemCount }}
     </div>
 
     <table class="records_list" border="1">
