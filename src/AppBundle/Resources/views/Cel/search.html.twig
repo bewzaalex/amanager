@@ -1,8 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-	Search
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+	<h1>Search</h1>
+	<div style="text-align: right; position: absolute;">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
+	</div>
 {% endblock %}
+
+{#
+
+margin-left: auto;
+margin-right: auto;
+
+#}
