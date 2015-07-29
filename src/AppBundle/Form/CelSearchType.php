@@ -41,6 +41,9 @@ class CelSearchType extends AbstractType
                     '34', '35', '36', '37', '38', '39', '40', '41', '42',
                     '43', '44', '45', '46', '47', '48', '49', '50', '51',
                     '52', '53', '54', '55', '56', '57', '58', '59'),
+                // FIXME: Make render in local timezone and request in UTC
+                // 'model_timezone' => 'UTC',
+                // 'view_timezone' => 'Etc/GMT-6',
             ))
 
             ->add('eventtime_to', 'datetime', array(
@@ -60,25 +63,11 @@ class CelSearchType extends AbstractType
                     '34', '35', '36', '37', '38', '39', '40', '41', '42',
                     '43', '44', '45', '46', '47', '48', '49', '50', '51',
                     '52', '53', '54', '55', '56', '57', '58', '59'),
+                // FIXME: Make render in local timezone and request in UTC
+                // 'model_timezone' => 'UTC',
+                // 'view_timezone' => 'Etc/GMT-6',
             ))
             
-            // ->add('eventtime', null, array(
-            //     'date_format' => 'yyyy-MM-dd  HH:mm',
-            //     'months' => array('01', '02', '03', '04', '05', '06',
-            //         '07', '08', '09', '10', '11', '12'),
-            //     'hours' => array('00', '01', '02', '03', '04', '05', '06',
-            //         '07', '08', '09', '10', '11', '12', '13', '14', '15',
-            //         '16', '17', '18', '19', '20', '21', '22', '23'),
-            //     'minutes' => array('00', '01', '02', '03', '04', '05', '06',
-            //         '07', '08', '09', '10', '11', '12', '13', '14', '15',
-            //         '16', '17', '18', '19', '20', '21', '22', '23', '24',
-            //         '25', '26', '27', '28', '29', '30', '31', '32', '33',
-            //         '34', '35', '36', '37', '38', '39', '40', '41', '42',
-            //         '43', '44', '45', '46', '47', '48', '49', '50', '51',
-            //         '52', '53', '54', '55', '56', '57', '58', '59'),
-            //     'required' => false,
-            //     'label' => 'Event Time: ',
-            // ))
             ->add('cid_name', null, array(
                 'required' => false,
                 'label' => 'CallerID Name: ',
@@ -176,7 +165,8 @@ class CelSearchType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Cel'
+            'data_class' => 'AppBundle\Entity\Cel',
+            'view_timezone' => 'UTC',
         ));
     }
 

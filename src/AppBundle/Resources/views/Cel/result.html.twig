@@ -44,7 +44,7 @@
             <tr>
                 <td><a href="{{ path('cel_show', { 'id': cel.id }) }}">{{ cel.id }}</a></td>
                 <td>{{ cel.eventtype }}</td>
-                <td>{% if cel.eventtime %}{{ cel.eventtime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if cel.eventtime %}{{ cel.eventtime|date('Y-m-d H:i:s', timezone) }}{% endif %}</td>
                 <td>{{ cel.cidname }}</td>
                 <td>{{ cel.cidnum }}</td>
                 <td>{{ cel.cidani }}</td>

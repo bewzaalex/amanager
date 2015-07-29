@@ -15,43 +15,36 @@ class Cel
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Assert\Blank()
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\Blank()
      */
     protected $eventtype;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Blank()
      */
     protected $eventtime;
 
     /**
      * @ORM\Column(type="string", length=80)
-     * @Assert\Blank()
      */
     protected $cid_name;
 
     /**
      * @ORM\Column(type="string", length=80)
-     * @Assert\Blank()
      */
     protected $cid_num;
 
     /**
      * @ORM\Column(type="string", length=80)
-     * @Assert\Blank()
      */
     protected $cid_ani;
 
     /**
      * @ORM\Column(type="string", length=80)
-     * @Assert\Blank()
      */
     protected $cid_rdnis;
 
@@ -198,6 +191,8 @@ class Cel
      */
     public function getEventtime()
     {
+        // return $this->eventtime->setTimeZone(new \DateTimeZone('Europe/Kiev'));
+
         return $this->eventtime;
     }
 
