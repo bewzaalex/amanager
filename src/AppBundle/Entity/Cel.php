@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -14,36 +15,43 @@ class Cel
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Assert\Blank()
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\Blank()
      */
     protected $eventtype;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Blank()
      */
     protected $eventtime;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Blank()
      */
     protected $cid_name;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Blank()
      */
     protected $cid_num;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Blank()
      */
     protected $cid_ani;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Blank()
      */
     protected $cid_rdnis;
 
