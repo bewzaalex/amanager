@@ -1,5 +1,23 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px 15px;
+            white-space: nowrap
+        }
+
+        thead {
+            background-color: #EEFFCE;
+        }
+    </style>
+{% endblock %}
+
 {% block body -%}
     <h1>Channel Event Log</h1>
 
@@ -67,13 +85,7 @@
                 <td>{{ cel.userdeftype }}</td>
                 <td>{{ cel.eventextra }}</td>
                 <td>{{ cel.userfield }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('cel_show', { 'id': cel.id }) }}">show</a>
-                    </li>
-                </ul>
-                </td>
+                <td><a href="{{ path('cel_show', { 'id': cel.id }) }}">show</a></td>
             </tr>
         {% endfor %}
         </tbody>

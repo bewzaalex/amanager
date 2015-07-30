@@ -23,20 +23,18 @@ class CelController extends Controller
      * Lists all Cel entities.
      *
      * @Route("/", name="cel")
+     * @Method("GET")
      * @Template()
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         
-        // Standart action (on GET method)
-        if ($request->isMethod('GET')) {
-            $query = $em->createQuery("SELECT event FROM AppBundle:Cel event");
-        }
+        $entities = $em->createQuery("SELECT event FROM AppBundle:Cel event");
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $entities,
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/,
             array('defaultSortFieldName' => 'event.id', 'defaultSortDirection' => 'desc')

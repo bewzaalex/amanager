@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px 15px;
+            white-space: nowrap
+        }
+
+        thead {
+            background-color: #EEFFCE;
+        }
+    </style>
+{% endblock %}
+
+{% block body -%}
+    <h1>Call Detail Record</h1>
+
+    {# total items count #}
+    <div class="count">
+        Total calls: {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Calldate</th>
+                <th>Uniqueid</th>
+                <th>Accountcode</th>
+                <th>Src</th>
+                <th>Dst</th>
+                <th>Dcontext</th>
+                <th>Clid</th>
+                <th>Channel</th>
+                <th>Dstchannel</th>
+                <th>Lastapp</th>
+                <th>Lastdata</th>
+                <th>Duration</th>
+                <th>Billsec</th>
+                <th>Disposition</th>
+                <th>Amaflags</th>
+                <th>Userfield</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td><a href="{{ path('cdr_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.calldate %}{{ entity.calldate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.uniqueid }}</td>
+                <td>{{ entity.accountcode }}</td>
+                <td>{{ entity.src }}</td>
+                <td>{{ entity.dst }}</td>
+                <td>{{ entity.dcontext }}</td>
+                <td>{{ entity.clid }}</td>
+                <td>{{ entity.channel }}</td>
+                <td>{{ entity.dstchannel }}</td>
+                <td>{{ entity.lastapp }}</td>
+                <td>{{ entity.lastdata }}</td>
+                <td>{{ entity.duration }}</td>
+                <td>{{ entity.billsec }}</td>
+                <td>{{ entity.disposition }}</td>
+                <td>{{ entity.amaflags }}</td>
+                <td>{{ entity.userfield }}</td>
+                <td><a href="{{ path('cdr_show', { 'id': entity.id }) }}">show</a></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    {{ dump(pagination) }}
+    {{ dump(request) }}
+
+    {% endblock %}
