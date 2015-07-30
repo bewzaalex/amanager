@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CelSearchType extends AbstractType
+class CdrSearchType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,15 +19,11 @@ class CelSearchType extends AbstractType
                 'required' => false,
                 'label' => 'ID: ',
             ))
-            ->add('eventtype', 'text', array(
-                'required' => false,
-                'label' => 'Event Type: ',
-            ))
-
-            ->add('eventtime_from', 'datetime', array(
+            
+            ->add('calldate_from', 'datetime', array(
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Event Time From: ',
+                'label' => 'Call Date From: ',
                 'date_format' => 'yyyy-MM-dd  HH:mm',
                 'months' => array('01', '02', '03', '04', '05', '06',
                     '07', '08', '09', '10', '11', '12'),
@@ -41,15 +37,12 @@ class CelSearchType extends AbstractType
                     '34', '35', '36', '37', '38', '39', '40', '41', '42',
                     '43', '44', '45', '46', '47', '48', '49', '50', '51',
                     '52', '53', '54', '55', '56', '57', '58', '59'),
-                // FIXME: Make render in local timezone and request in UTC
-                // 'model_timezone' => 'UTC',
-                // 'view_timezone' => 'Etc/GMT-6',
             ))
 
-            ->add('eventtime_to', 'datetime', array(
+            ->add('calldate_to', 'datetime', array(
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Event Time To: ',
+                'label' => 'Call Date To: ',
                 'date_format' => 'yyyy-MM-dd  HH:mm',
                 'months' => array('01', '02', '03', '04', '05', '06',
                     '07', '08', '09', '10', '11', '12'),
@@ -63,98 +56,67 @@ class CelSearchType extends AbstractType
                     '34', '35', '36', '37', '38', '39', '40', '41', '42',
                     '43', '44', '45', '46', '47', '48', '49', '50', '51',
                     '52', '53', '54', '55', '56', '57', '58', '59'),
-                // FIXME: Make render in local timezone and request in UTC
-                // 'model_timezone' => 'UTC',
-                // 'view_timezone' => 'Etc/GMT-6',
             ))
             
-            ->add('cid_name', null, array(
+            ->add('uniqueid', null, array(
                 'required' => false,
-                'label' => 'CallerID Name: ',
-            ))
-            ->add('cid_num', null, array(
-                'required' => false,
-                'label' => 'CallerID Number: ',
-            ))
-            ->add('cid_ani', null, array(
-                'required' => false,
-                'label' => 'CallerID ANI: ',
-            ))
-            ->add('cid_rdnis', null, array(
-                'required' => false,
-                'label' => 'CallerID RDNIS: ',
-            ))
-            ->add('cid_dnid', null, array(
-                'required' => false,
-                'label' => 'CallerID DNID: ',
-            ))
-            ->add('exten', null, array(
-                'required' => false,
-                'label' => 'Extension: ',
-            ))
-            ->add('context', null, array(
-                'required' => false,
-                'label' => 'Context: ',
-            ))
-            ->add('channame', null, array(
-                'required' => false,
-                'label' => 'Channel Name: ',
-            ))
-            ->add('src', null, array(
-                'required' => false,
-                'label' => 'Source: ',
-            ))
-            ->add('dst', null, array(
-                'required' => false,
-                'label' => 'Destination: ',
-            ))
-            ->add('channel', null, array(
-                'required' => false,
-                'label' => 'Channel: ',
-            ))
-            ->add('dstchannel', null, array(
-                'required' => false,
-                'label' => 'Destination Channel: ',
-            ))
-            ->add('appname', null, array(
-                'required' => false,
-                'label' => 'Application Name: ',
-            ))
-            ->add('appdata', null, array(
-                'required' => false,
-                'label' => 'Application Data: ',
-            ))
-            ->add('amaflags', null, array(
-                'required' => false,
-                'label' => 'Amaflags: ',
+                'label' => 'uniqueid: ',
             ))
             ->add('accountcode', null, array(
                 'required' => false,
-                'label' => 'Accountcode: ',
+                'label' => 'accountcode: ',
             ))
-            ->add('uniqueid', null, array(
+            ->add('src', null, array(
                 'required' => false,
-                'label' => 'UniqueID: ',
+                'label' => 'src: ',
             ))
-            ->add('linkedid', null, array(
+            ->add('dst', null, array(
                 'required' => false,
-                'label' => 'LinkedID: ',
+                'label' => 'dst: ',
             ))
-            ->add('peer', null, array(
+            ->add('dcontext', null, array(
                 'required' => false,
-                'label' => 'Peer: ',
+                'label' => 'dcontext: ',
             ))
-            ->add('userdeftype', null, array(
+            ->add('clid', null, array(
                 'required' => false,
-                'label' => 'Userdeftype: ',
+                'label' => 'clid: ',
             ))
-            ->add('eventextra', null, array(
+            ->add('channel', null, array(
                 'required' => false,
-                'label' => 'Eventextra: ',
+                'label' => 'channel: ',
+            ))
+            ->add('dstchannel', null, array(
+                'required' => false,
+                'label' => 'dstchannel: ',
+            ))
+            ->add('lastapp', null, array(
+                'required' => false,
+                'label' => 'lastapp: ',
+            ))
+            ->add('lastdata', null, array(
+                'required' => false,
+                'label' => 'lastdata: ',
+            ))
+            ->add('duration', null, array(
+                'required' => false,
+                'label' => 'duration: ',
+            ))
+            ->add('billsec', null, array(
+                'required' => false,
+                'label' => 'billsec: ',
+            ))
+            ->add('disposition', null, array(
+                'required' => false,
+                'label' => 'disposition: ',
+            ))
+            ->add('amaflags', null, array(
+                'required' => false,
+                'label' => 'amaflags: ',
             ))
             ->add('userfield', null, array(
                 'required' => false,
-                'label' => 'Userfield: ',
+                'label' => 'userfield: ',
             ))
         ;
     }
@@ -165,7 +127,7 @@ class CelSearchType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Cel',
+            'data_class' => 'AppBundle\Entity\Cdr',
         ));
     }
 
@@ -174,6 +136,6 @@ class CelSearchType extends AbstractType
      */
     public function getName()
     {
-        return 'cel_search';
+        return 'cdr_search';
     }
 }

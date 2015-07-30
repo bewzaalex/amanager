@@ -16,13 +16,4 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig');
     }
-
-    /**
-     * @Route("/play", name="play")
-     */
-    public function playAction()
-    {
-
-        return $this->render('default/play.html.twig');
-    }
 }

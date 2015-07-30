@@ -15,7 +15,7 @@ class Builder extends ContainerAware
 
         // Cdr menu entry
         $menu->addChild('Cdr', array('route' => 'cdr'));
-        $menu['Cdr']->addChild('Search', array('route' => 'cdr'));
+        $menu['Cdr']->addChild('Search', array('route' => 'cdr_search'));
 
         // Cel menu entry
         $menu->addChild('Cel', array('route' => 'cel'));

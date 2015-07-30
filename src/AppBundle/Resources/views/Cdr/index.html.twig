@@ -69,7 +69,13 @@
                 <td>{{ entity.disposition }}</td>
                 <td>{{ entity.amaflags }}</td>
                 <td>{{ entity.userfield }}</td>
-                <td><a href="{{ path('cdr_show', { 'id': entity.id }) }}">show</a></tr>
+                <td>
+                    <a href="{{ path('cdr_show', { 'id': entity.id }) }}">show</a>
+                    <audio controls>
+                        <source src=/audio/{{ entity.uniqueid|trim }}.ogg type="audio/ogg">
+                        No audio found.
+                    </audio>
+                </tr>
         {% endfor %}
         </tbody>
     </table>
@@ -79,7 +85,9 @@
         {{ knp_pagination_render(pagination) }}
     </div>
 
+    {#
     {{ dump(pagination) }}
     {{ dump(request) }}
+    #}
 
     {% endblock %}

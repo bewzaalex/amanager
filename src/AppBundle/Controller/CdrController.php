@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Cdr;
+use AppBundle\Form\CdrSearchType;
 
 /**
  * Cdr controller.
@@ -37,7 +38,7 @@ class CdrController extends Controller
             $entities,
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/,
-            array('defaultSortFieldName' => 'call.id', 'defaultSortDirection' => 'desc')
+            array('defaultSortFieldName' => 'call.calldate', 'defaultSortDirection' => 'desc')
         );
 
         return array(
@@ -50,7 +51,7 @@ class CdrController extends Controller
     /**
      * Finds and displays a Cdr entity.
      *
-     * @Route("/{id}", name="cdr_show")
+     * @Route("/{id}", name="cdr_show", requirements={ "id": "\d+" })
      * @Method("GET")
      * @Template()
      */
@@ -65,7 +66,29 @@ class CdrController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
+        );
+    }
+
+    /**
+     * Search for calls
+     * 
+     * @Route("/search", name="cdr_search")
+     * @Method("GET")
+     * @Template()
+     */
+    public function searchAction(Request $request)
+    {
+        $entity = new Cdr();
+        
+        $form = $this->createForm(new CdrSearchType(), $entity, array(
+            'action' => $this->generateUrl('cdr'),
+            'method' => 'GET',
+        ));
+        $form->add('search', 'submit', array('label' => 'Search'));
+
+        return array(
+            'form' => $form->createView(),
         );
     }
 }
