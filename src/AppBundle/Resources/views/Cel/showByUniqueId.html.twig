@@ -1,0 +1,94 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+		}
+
+		table, th, td {
+    		border: 1px solid black;
+    		padding: 5px 15px;
+    		white-space: nowrap
+		}
+
+		thead {
+			background-color: #EEFFCE;
+		}
+	</style>
+{% endblock %}
+
+{% block body -%}
+    <h1>{{ pagination.getTotalItemCount }} events for UniqueID {{ pagination.params.uniqueid }}</h1>
+
+    <table class="records_list" border="1" border-collapse: collapse>
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'event.id') }}</th>
+                <th>Eventtype</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Eventtime', 'event.eventtime') }}</th>
+                <th>Cid_name</th>
+                <th>Cid_num</th>
+                <th>Cid_ani</th>
+                <th>Cid_rdnis</th>
+                <th>Cid_dnid</th>
+                <th>Exten</th>
+                <th>Context</th>
+                <th>Channame</th>
+                <th>Src</th>
+                <th>Dst</th>
+                <th>Channel</th>
+                <th>Dstchannel</th>
+                <th>Appname</th>
+                <th>Appdata</th>
+                <th>Amaflags</th>
+                <th>Accountcode</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Uniqueid', 'event.uniqueid') }}</th>
+                <th>Linkedid</th>
+                <th>Peer</th>
+                <th>Userdeftype</th>
+                <th>Eventextra</th>
+                <th>Userfield</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td><a href="{{ path('cel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.eventtype }}</td>
+                <td>{% if entity.eventtime %}{{ entity.eventtime|date('Y-m-d H:i:s', timezone) }}{% endif %}</td>
+                <td>{{ entity.cidname }}</td>
+                <td>{{ entity.cidnum }}</td>
+                <td>{{ entity.cidani }}</td>
+                <td>{{ entity.cidrdnis }}</td>
+                <td>{{ entity.ciddnid }}</td>
+                <td>{{ entity.exten }}</td>
+                <td>{{ entity.context }}</td>
+                <td>{{ entity.channame }}</td>
+                <td>{{ entity.src }}</td>
+                <td>{{ entity.dst }}</td>
+                <td>{{ entity.channel }}</td>
+                <td>{{ entity.dstchannel }}</td>
+                <td>{{ entity.appname }}</td>
+                <td>{{ entity.appdata }}</td>
+                <td>{{ entity.amaflags }}</td>
+                <td>{{ entity.accountcode }}</td>
+                <td>{{ entity.uniqueid }}</td>
+                <td>{{ entity.linkedid }}</td>
+                <td>{{ entity.peer }}</td>
+                <td>{{ entity.userdeftype }}</td>
+                <td>{{ entity.eventextra }}</td>
+                <td>{{ entity.userfield }}</td>
+                <td><a href="{{ path('cel_show', { 'id': entity.id }) }}">show</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    {% endblock %}

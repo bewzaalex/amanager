@@ -29,7 +29,7 @@ class CelController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $entities = $em->createQuery("SELECT event FROM AppBundle:Cel event");
 
         $paginator  = $this->get('knp_paginator');
@@ -70,8 +70,40 @@ class CelController extends Controller
     }
 
     /**
+     * Finds and displays a Cel entity.
+     *
+     * @Route("/{uniqueid}", name="cel_show_by_uniqueid")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showByUniqueIdAction($uniqueid, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Cel')
+            ->findBy(array('uniqueid' => $uniqueid));
+
+        if (!$entities) {
+            throw $this->createNotFoundException('Unable to find Cel entity.');
+        }
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $entities,
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/,
+            array('defaultSortFieldName' => 'event.id', 'defaultSortDirection' => 'desc')
+        );
+
+        return array(
+            'pagination' => $pagination,
+            'timezone' => 'Etc/GMT-6',
+        );
+    }
+
+    /**
     * Search for events
-    * 
+    *
     * @Route("/search", name="cel_search")
     * @Method("GET")
     * @Template()
@@ -79,7 +111,7 @@ class CelController extends Controller
     public function searchAction(Request $request)
     {
         $entity = new Cel;
-        
+
         $form = $this->createForm(new CelSearchType(), $entity, array(
             'action' => $this->generateUrl('cel_result'),
             'method' => 'GET',
@@ -93,19 +125,17 @@ class CelController extends Controller
 
     /**
     * Display search result
-    * 
+    *
     * @Route("/result", name="cel_result")
     * @Template()
     */
     public function resultAction(Request $request)
     {
-        // $em = $this->getDoctrine()->getManager();
-
         $search = $request->query->all();
 
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Cel');
-            
+
         $query = $repository->createQueryBuilder('event');
 
         if (isset($search['cel_search'])) {
@@ -119,9 +149,9 @@ class CelController extends Controller
                     ->setParameter('eventtype', '%'.$search['cel_search']['eventtype'].'%');
             }
 
-            /*
-            * Event Time
-            */
+            /**
+             * Event Time
+             */
             $EventTimeFrom = "";
             if ($search['cel_search']['eventtime_from']['date']['year'] != "") {
                 $EventTimeFrom .= $search['cel_search']['eventtime_from']['date']['year'];
@@ -177,7 +207,7 @@ class CelController extends Controller
             }
             $EventTimeTo .= '%';
             if ((
-                    $search['cel_search']['eventtime_from']['date']['year'] != "" || 
+                    $search['cel_search']['eventtime_from']['date']['year'] != "" ||
                     $search['cel_search']['eventtime_from']['date']['month'] != "" ||
                     $search['cel_search']['eventtime_from']['date']['day'] != "" ||
                     $search['cel_search']['eventtime_from']['time']['hour'] != "" ||
@@ -193,7 +223,7 @@ class CelController extends Controller
                     ->setParameter('eventtime_from', $EventTimeFrom)
                     ->setParameter('eventtime_to', $EventTimeTo);
             } elseif (
-                    $search['cel_search']['eventtime_from']['date']['year'] != "" || 
+                    $search['cel_search']['eventtime_from']['date']['year'] != "" ||
                     $search['cel_search']['eventtime_from']['date']['month'] != "" ||
                     $search['cel_search']['eventtime_from']['date']['day'] != "" ||
                     $search['cel_search']['eventtime_from']['time']['hour'] != "" ||
@@ -202,7 +232,7 @@ class CelController extends Controller
                     $query->andWhere('event.eventtime > :eventtime_from')
                     ->setParameter('eventtime_from', $EventTimeFrom);
             } elseif (
-                    $search['cel_search']['eventtime_to']['date']['year'] != "" || 
+                    $search['cel_search']['eventtime_to']['date']['year'] != "" ||
                     $search['cel_search']['eventtime_to']['date']['month'] != "" ||
                     $search['cel_search']['eventtime_to']['date']['day'] != "" ||
                     $search['cel_search']['eventtime_to']['time']['hour'] != "" ||
@@ -212,9 +242,9 @@ class CelController extends Controller
                     ->setParameter('eventtime_to', $EventTimeTo);
             }
 
-            /*
-            * CallerID Name
-            */
+            /**
+             * CallerID Name
+             */
             if ($search['cel_search']['cid_name'] != "") {
                 $query->andWhere('event.cid_name like :cid_name')
                     ->setParameter('cid_name', '%'.$search['cel_search']['cid_name'].'%');
