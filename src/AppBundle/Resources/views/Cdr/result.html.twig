@@ -1,25 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-    <style type="text/css">
-        body {
-            /*font-size: 0.75em;*/
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            padding: 5px 15px;
-            white-space: nowrap
-        }
-
-        thead, th {
-            background-color: #EEFFCE;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/bootstrap.css">
 {% endblock %}
 
 {% block body -%}
@@ -30,7 +12,8 @@
         Total calls: {{ pagination.getTotalItemCount }}
     </div>
 
-    <table class="records_list">
+    <div>
+    <table class="table table-bordered text-nowrap">
         <thead>
             <tr>
                 <th>Id</th>
@@ -78,6 +61,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
     {# display navigation #}
     <div class="navigation">

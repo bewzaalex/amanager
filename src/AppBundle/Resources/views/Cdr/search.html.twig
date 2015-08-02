@@ -1,8 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/bootstrap.css">
+{% endblock %}
+
 {% block body -%}
 	<h1>Search</h1>
-	<div style="text-align: right; position: absolute;">
+	<div class="form-group" style="text-align: right; position: absolute;">
 		{{ form_start(form) }}
 		{{ form_widget(form) }}
 		{{ form_end(form) }}

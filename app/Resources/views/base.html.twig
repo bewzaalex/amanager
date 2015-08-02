@@ -7,7 +7,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+        <div id="menu">{{ knp_menu_render('AppBundle:Builder:mainMenu') }}</div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
