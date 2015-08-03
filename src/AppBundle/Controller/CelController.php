@@ -30,27 +30,20 @@ class CelController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->createQuery("SELECT event FROM AppBundle:Cel event");
-
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $entities,
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/,
-            array('defaultSortFieldName' => 'event.id', 'defaultSortDirection' => 'desc')
-        );
+        $query = $em->createQuery("SELECT event FROM AppBundle:Cel event ORDER BY event.id DESC");
+        $query->setMaxResults('10');
+        $entities = $query->getResult();
 
         return array(
-            'pagination' => $pagination,
             'timezone' => 'Etc/GMT-6',
-            'request' => $request,
+            'entities' => $entities
         );
     }
 
     /**
      * Finds and displays a Cel entity.
      *
-     * @Route("/{id}", name="cel_show", requirements={ "id": "\d+" })
+     * @Route("/id/{id}", name="cel_show", requirements={ "id": "\d+" })
      * @Method("GET")
      * @Template()
      */
@@ -72,7 +65,7 @@ class CelController extends Controller
     /**
      * Finds and displays a Cel entity.
      *
-     * @Route("/{uniqueid}", name="cel_show_by_uniqueid")
+     * @Route("/uniqueid/{uniqueid}", name="cel_show_by_uniqueid")
      * @Method("GET")
      * @Template()
      */

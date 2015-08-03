@@ -1,9 +1,13 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Cel</h1>
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/bootstrap.css">
+{% endblock %}
 
-    <table class="record_properties" border="1">
+{% block body -%}
+    <h1>Event number {{ entity.id }}</h1>
+
+    <table class="table table-bordered text-nowrap">
         <tbody>
             <tr>
                 <th>Id</th>

@@ -17,17 +17,17 @@ class CelSearchType extends AbstractType
         $builder
             ->add('id', null, array(
                 'required' => false,
-                'label' => 'ID: ',
+                'label' => 'ID',
             ))
             ->add('eventtype', 'text', array(
                 'required' => false,
-                'label' => 'Event Type: ',
+                'label' => 'Event Type',
             ))
 
             ->add('eventtime_from', 'datetime', array(
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Event Time From: ',
+                'label' => 'Event Time From',
                 'date_format' => 'yyyy-MM-dd  HH:mm',
                 'months' => array('01', '02', '03', '04', '05', '06',
                     '07', '08', '09', '10', '11', '12'),
@@ -44,12 +44,13 @@ class CelSearchType extends AbstractType
                 // FIXME: Make render in local timezone and request in UTC
                 // 'model_timezone' => 'UTC',
                 // 'view_timezone' => 'Etc/GMT-6',
+                // 'date_widget'=> 'single_text',
             ))
 
             ->add('eventtime_to', 'datetime', array(
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Event Time To: ',
+                'label' => 'Event Time To',
                 'date_format' => 'yyyy-MM-dd  HH:mm',
                 'months' => array('01', '02', '03', '04', '05', '06',
                     '07', '08', '09', '10', '11', '12'),
@@ -66,95 +67,96 @@ class CelSearchType extends AbstractType
                 // FIXME: Make render in local timezone and request in UTC
                 // 'model_timezone' => 'UTC',
                 // 'view_timezone' => 'Etc/GMT-6',
+                // 'date_widget'=> 'single_text',
             ))
             
             ->add('cid_name', null, array(
                 'required' => false,
-                'label' => 'CallerID Name: ',
+                'label' => 'CallerID Name',
             ))
             ->add('cid_num', null, array(
                 'required' => false,
-                'label' => 'CallerID Number: ',
+                'label' => 'CallerID Number',
             ))
             ->add('cid_ani', null, array(
                 'required' => false,
-                'label' => 'CallerID ANI: ',
+                'label' => 'CallerID ANI',
             ))
             ->add('cid_rdnis', null, array(
                 'required' => false,
-                'label' => 'CallerID RDNIS: ',
+                'label' => 'CallerID RDNIS',
             ))
             ->add('cid_dnid', null, array(
                 'required' => false,
-                'label' => 'CallerID DNID: ',
+                'label' => 'CallerID DNID',
             ))
             ->add('exten', null, array(
                 'required' => false,
-                'label' => 'Extension: ',
+                'label' => 'Extension',
             ))
             ->add('context', null, array(
                 'required' => false,
-                'label' => 'Context: ',
+                'label' => 'Context',
             ))
             ->add('channame', null, array(
                 'required' => false,
-                'label' => 'Channel Name: ',
+                'label' => 'Channel Name',
             ))
             ->add('src', null, array(
                 'required' => false,
-                'label' => 'Source: ',
+                'label' => 'Source',
             ))
             ->add('dst', null, array(
                 'required' => false,
-                'label' => 'Destination: ',
+                'label' => 'Destination',
             ))
             ->add('channel', null, array(
                 'required' => false,
-                'label' => 'Channel: ',
+                'label' => 'Channel',
             ))
             ->add('dstchannel', null, array(
                 'required' => false,
-                'label' => 'Destination Channel: ',
+                'label' => 'Destination Channel',
             ))
             ->add('appname', null, array(
                 'required' => false,
-                'label' => 'Application Name: ',
+                'label' => 'Application Name',
             ))
             ->add('appdata', null, array(
                 'required' => false,
-                'label' => 'Application Data: ',
+                'label' => 'Application Data',
             ))
             ->add('amaflags', null, array(
                 'required' => false,
-                'label' => 'Amaflags: ',
+                'label' => 'Amaflags',
             ))
             ->add('accountcode', null, array(
                 'required' => false,
-                'label' => 'Accountcode: ',
+                'label' => 'Accountcode',
             ))
             ->add('uniqueid', null, array(
                 'required' => false,
-                'label' => 'UniqueID: ',
+                'label' => 'UniqueID',
             ))
             ->add('linkedid', null, array(
                 'required' => false,
-                'label' => 'LinkedID: ',
+                'label' => 'LinkedID',
             ))
             ->add('peer', null, array(
                 'required' => false,
-                'label' => 'Peer: ',
+                'label' => 'Peer',
             ))
             ->add('userdeftype', null, array(
                 'required' => false,
-                'label' => 'Userdeftype: ',
+                'label' => 'Userdeftype',
             ))
             ->add('eventextra', null, array(
                 'required' => false,
-                'label' => 'Eventextra: ',
+                'label' => 'Eventextra',
             ))
             ->add('userfield', null, array(
                 'required' => false,
-                'label' => 'Userfield: ',
+                'label' => 'Userfield',
             ))
         ;
     }

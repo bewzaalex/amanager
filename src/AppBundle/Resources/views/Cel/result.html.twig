@@ -1,21 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-	<style type="text/css">
-		table {
-			border-collapse: collapse;
-		}
-
-		table, th, td {
-    		border: 1px solid black;
-    		padding: 5px 15px;
-    		white-space: nowrap
-		}
-
-		thead {
-			background-color: #EEFFCE;
-		}
-	</style>
+    <link rel="stylesheet" href="/css/bootstrap.css">
 {% endblock %}
 
 {% block body -%}
@@ -26,7 +12,7 @@
         Total events: {{ pagination.getTotalItemCount }}
     </div>
 
-    <table class="records_list" border="1" border-collapse: collapse>
+    <table class="table table-bordered text-nowrap">
         <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'event.id') }}</th>
@@ -95,8 +81,4 @@
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
     </div>
-
-    {{ dump(pagination) }}
-    {{ dump(request) }}
-
-    {% endblock %}
+{% endblock %}

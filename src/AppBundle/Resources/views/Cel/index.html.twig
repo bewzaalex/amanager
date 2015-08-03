@@ -2,89 +2,80 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <meta http-equiv="refresh" content="10" />
 {% endblock %}
 
 {% block body -%}
-    <h1>Channel Event Log</h1>
+    <h1>Last 10 events</h1>
 
-    {# total items count #}
-    <div class="count">
-        Total events: {{ pagination.getTotalItemCount }}
+    <div id="content">
+        <table class="table table-bordered text-nowrap">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Eventtype</th>
+                    <th>Eventtime</th>
+                    <th>Cid_name</th>
+                    <th>Cid_num</th>
+                    <th>Cid_ani</th>
+                    <th>Cid_rdnis</th>
+                    <th>Cid_dnid</th>
+                    <th>Exten</th>
+                    <th>Context</th>
+                    <th>Channame</th>
+                    <th>Src</th>
+                    <th>Dst</th>
+                    <th>Channel</th>
+                    <th>Dstchannel</th>
+                    <th>Appname</th>
+                    <th>Appdata</th>
+                    <th>Amaflags</th>
+                    <th>Accountcode</th>
+                    <th>Uniqueid</th>
+                    <th>Linkedid</th>
+                    <th>Peer</th>
+                    <th>Userdeftype</th>
+                    <th>Eventextra</th>
+                    <th>Userfield</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('cel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.eventtype }}</td>
+                    <td>{% if entity.eventtime %}{{ entity.eventtime|date('Y-m-d H:i:s', timezone) }}{% endif %}</td>
+                    <td>{{ entity.cidname }}</td>
+                    <td>{{ entity.cidnum }}</td>
+                    <td>{{ entity.cidani }}</td>
+                    <td>{{ entity.cidrdnis }}</td>
+                    <td>{{ entity.ciddnid }}</td>
+                    <td>{{ entity.exten }}</td>
+                    <td>{{ entity.context }}</td>
+                    <td>{{ entity.channame }}</td>
+                    <td>{{ entity.src }}</td>
+                    <td>{{ entity.dst }}</td>
+                    <td>{{ entity.channel }}</td>
+                    <td>{{ entity.dstchannel }}</td>
+                    <td>{{ entity.appname }}</td>
+                    <td>{{ entity.appdata }}</td>
+                    <td>{{ entity.amaflags }}</td>
+                    <td>{{ entity.accountcode }}</td>
+                    <td>{{ entity.uniqueid }}</td>
+                    <td>{{ entity.linkedid }}</td>
+                    <td>{{ entity.peer }}</td>
+                    <td>{{ entity.userdeftype }}</td>
+                    <td>{{ entity.eventextra }}</td>
+                    <td>{{ entity.userfield }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 
-    <table class="table table-bordered text-nowrap">
-        <thead>
-            <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Id', 'event.id') }}</th>
-                <th>Eventtype</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Eventtime', 'event.eventtime') }}</th>
-                <th>Cid_name</th>
-                <th>Cid_num</th>
-                <th>Cid_ani</th>
-                <th>Cid_rdnis</th>
-                <th>Cid_dnid</th>
-                <th>Exten</th>
-                <th>Context</th>
-                <th>Channame</th>
-                <th>Src</th>
-                <th>Dst</th>
-                <th>Channel</th>
-                <th>Dstchannel</th>
-                <th>Appname</th>
-                <th>Appdata</th>
-                <th>Amaflags</th>
-                <th>Accountcode</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Uniqueid', 'event.uniqueid') }}</th>
-                <th>Linkedid</th>
-                <th>Peer</th>
-                <th>Userdeftype</th>
-                <th>Eventextra</th>
-                <th>Userfield</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cel in pagination %}
-            <tr>
-                <td><a href="{{ path('cel_show', { 'id': cel.id }) }}">{{ cel.id }}</a></td>
-                <td>{{ cel.eventtype }}</td>
-                <td>{% if cel.eventtime %}{{ cel.eventtime|date('Y-m-d H:i:s', timezone) }}{% endif %}</td>
-                <td>{{ cel.cidname }}</td>
-                <td>{{ cel.cidnum }}</td>
-                <td>{{ cel.cidani }}</td>
-                <td>{{ cel.cidrdnis }}</td>
-                <td>{{ cel.ciddnid }}</td>
-                <td>{{ cel.exten }}</td>
-                <td>{{ cel.context }}</td>
-                <td>{{ cel.channame }}</td>
-                <td>{{ cel.src }}</td>
-                <td>{{ cel.dst }}</td>
-                <td>{{ cel.channel }}</td>
-                <td>{{ cel.dstchannel }}</td>
-                <td>{{ cel.appname }}</td>
-                <td>{{ cel.appdata }}</td>
-                <td>{{ cel.amaflags }}</td>
-                <td>{{ cel.accountcode }}</td>
-                <td>{{ cel.uniqueid }}</td>
-                <td>{{ cel.linkedid }}</td>
-                <td>{{ cel.peer }}</td>
-                <td>{{ cel.userdeftype }}</td>
-                <td>{{ cel.eventextra }}</td>
-                <td>{{ cel.userfield }}</td>
-                <td><a href="{{ path('cel_show', { 'id': cel.id }) }}">show</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% endblock %}
 
-    {# display navigation #}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+{% block javascripts %}
 
-    {#
-    {{ dump(pagination) }}
-    {{ dump(request) }}
-    #}
-
-    {% endblock %}
+{% endblock %}

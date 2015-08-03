@@ -5,10 +5,31 @@
 {% endblock %}
 
 {% block body -%}
-	<h1>Search</h1>
-	<div style="text-align: right; position: absolute;">
+	<h1>Search for events</h1>
+	<div class="row">
 		{{ form_start(form) }}
-		{{ form_widget(form) }}
+		<div class="row">
+		{% for field in form.children %}
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(field) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(field, { 'attr': {
+						'style' : 'width:150px'
+					}} ) }} 
+				</div>
+				<div class="col-xs-2">
+				</div>
+				<div class="col-xs-4">
+				</div>
+			</div>
+    	{% endfor %}
+    	</div>
 		{{ form_end(form) }}
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/js/jquery.min.js"></script>
 {% endblock %}
