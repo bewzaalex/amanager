@@ -26,7 +26,7 @@ class CdrController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $ItemsPerPage=10)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -37,14 +37,15 @@ class CdrController extends Controller
         $pagination = $paginator->paginate(
             $entities,
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/,
+            $ItemsPerPage,
             array('defaultSortFieldName' => 'call.calldate', 'defaultSortDirection' => 'desc')
         );
 
         return array(
             'pagination' => $pagination,
             'timezone' => 'Etc/GMT-6',
-            'request' => $request,
+            'ItemsPerPage' => $ItemsPerPage
+
         );
     }
 
@@ -99,7 +100,7 @@ class CdrController extends Controller
     * @Route("/result", name="cdr_result")
     * @Template()
     */
-    public function resultAction(Request $request)
+    public function resultAction(Request $request, $ItemsPerPage=10)
     {
         $search = $request->query->all();
 
@@ -121,67 +122,24 @@ class CdrController extends Controller
             /*
             * Call Date
             */
-            $CallDateFrom = "";
-            if ($search['cdr_search']['calldate_from']['date'] != "") {
-                $CallDateFrom .= $search['cdr_search']['calldate_from']['date'];
-            } else {
-                $CallDateFrom .= '%-%-%';
-            }
-            if ($search['cdr_search']['calldate_from']['time']['hour'] != "") {
-                $CallDateFrom .= ' '.$search['cdr_search']['calldate_from']['time']['hour'];
-            } else {
-                $CallDateFrom .= ' %';
-            }
-            if ($search['cdr_search']['calldate_from']['time']['minute'] != "") {
-                $CallDateFrom .= ':'.$search['cdr_search']['calldate_from']['time']['minute'];
-            } else {
-                $CallDateFrom .= ':%';
-            }
-            $CallDateFrom .= '%';
-            $CallDateTo = "";
-            if ($search['cdr_search']['calldate_to']['date'] != "") {
-                $CallDateTo .= $search['cdr_search']['calldate_to']['date'];
-            } else {
-                $CallDateTo .= '%-%-%';
-            }
-            if ($search['cdr_search']['calldate_to']['time']['hour'] != "") {
-                $CallDateTo .= ' '.$search['cdr_search']['calldate_to']['time']['hour'];
-            } else {
-                $CallDateTo .= ' %';
-            }
-            if ($search['cdr_search']['calldate_to']['time']['minute'] != "") {
-                $CallDateTo .= ':'.$search['cdr_search']['calldate_to']['time']['minute'];
-            } else {
-                $CallDateTo .= ':%';
-            }
-            $CallDateTo .= '%';
             if ((
-                    $search['cdr_search']['calldate_from']['date'] != "" ||             
-                    $search['cdr_search']['calldate_from']['time']['hour'] != "" ||
-                    $search['cdr_search']['calldate_from']['time']['minute'] != ""
+                    $search['cdr_search']['calldate_from'] != ""
                 ) && (
-                    $search['cdr_search']['calldate_to']['date'] != "" ||
-                    $search['cdr_search']['calldate_to']['time']['hour'] != "" ||
-                    $search['cdr_search']['calldate_to']['time']['minute'] != ""
+                    $search['cdr_search']['calldate_to'] != ""
                 )) {
                     $query->andWhere('call.calldate between :calldate_from and :calldate_to')
-                    ->setParameter('calldate_from', $CallDateFrom)
-                    ->setParameter('calldate_to', $CallDateTo);
+                    ->setParameter('calldate_from', $search['cdr_search']['calldate_from'].'%')
+                    ->setParameter('calldate_to', $search['cdr_search']['calldate_to'].'%');
             } elseif (
-                    $search['cdr_search']['calldate_from']['date'] != "" || 
-
-                    $search['cdr_search']['calldate_from']['time']['hour'] != "" ||
-                    $search['cdr_search']['calldate_from']['time']['minute'] != ""
+                    $search['cdr_search']['calldate_from'] != ""
                 ) {
                     $query->andWhere('call.calldate > :calldate_from')
-                    ->setParameter('calldate_from', $CallDateFrom);
+                    ->setParameter('calldate_from', $search['cdr_search']['calldate_from'].'%');
             } elseif (
-                    $search['cdr_search']['calldate_to']['date'] != "" || 
-                    $search['cdr_search']['calldate_to']['time']['hour'] != "" ||
-                    $search['cdr_search']['calldate_to']['time']['minute'] != ""
+                    $search['cdr_search']['calldate_to'] != ""
                 ) {
                     $query->andWhere('call.calldate < :calldate_to')
-                    ->setParameter('calldate_to', $CallDateTo);
+                    ->setParameter('calldate_to', $search['cdr_search']['calldate_to'].'%');
             }
 
             /**
@@ -316,7 +274,7 @@ class CdrController extends Controller
         return array(
             'pagination' => $pagination,
             'timezone' => 'Etc/GMT-6',
-            'request' => $request,
+            'ItemsPerPage' => $ItemsPerPage
         );
     }
 }

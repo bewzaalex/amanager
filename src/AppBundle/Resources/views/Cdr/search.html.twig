@@ -9,187 +9,155 @@
 	<h1>Search for calls</h1>
 	<div class="row">
 		{{ form_start(form) }}
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.calldate_from) }}
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							{{ form_label(form.calldate_from) }}
+							{{ form_widget(form.calldate_from, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'datetimepicker form-control'
+							}} ) }}		
+						</div>
+						<div class="form-group">
+							{{ form_label(form.id) }}
+							{{ form_widget(form.id, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.uniqueid) }}
+							{{ form_widget(form.uniqueid, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.accountcode) }}
+							{{ form_widget(form.accountcode, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.src) }}
+							{{ form_widget(form.src, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.dst) }}
+							{{ form_widget(form.dst, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.dcontext) }}
+							{{ form_widget(form.dcontext, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.clid) }}
+							{{ form_widget(form.clid, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.channel) }}
+							{{ form_widget(form.channel, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							{{ form_label(form.calldate_to) }}
+							{{ form_widget(form.calldate_to, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'datetimepicker form-control'
+							}} ) }}		
+						</div>
+						<div class="form-group">
+						{{ form_label(form.dstchannel) }}
+						{{ form_widget(form.dstchannel, { 'attr': {
+							'style' : 'width:150px',
+							'class' : 'form-control'
+						}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.lastapp) }}
+							{{ form_widget(form.lastapp, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.lastdata) }}
+							{{ form_widget(form.lastdata, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.duration) }}
+							{{ form_widget(form.duration, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.billsec) }}
+							{{ form_widget(form.billsec, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.disposition) }}
+							{{ form_widget(form.disposition, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.amaflags) }}
+							{{ form_widget(form.amaflags, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.userfield) }}
+							{{ form_widget(form.userfield, { 'attr': {
+								'style' : 'width:150px',
+								'class' : 'form-control'
+							}} ) }}
+						</div>
+						</div>
 				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.calldate_from.date, { 'attr': {
-						'style' : 'width:150px',
-						'class' : 'datetimepicker'
-					}} ) }}					
-					{{ form_widget(form.calldate_from.time) }}
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.calldate_to) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.calldate_to.date, { 'attr': {
-						'style' : 'width:150px',
-						'class' : 'datetimepicker'
-					}} ) }}
-					{{ form_widget(form.calldate_to.time) }}
-				</div>
+				<div class="row">
+					<div class="lol-md-6">
+						<div class="form-group">
+							{{ form_widget(form.search, { 'attr': {
+								'class' : 'btn btn-primary'
+							}} ) }}
+							{{ form_widget(form.reset, { 'attr': {
+								'class' : 'btn btn-danger'
+							}} ) }}
+						</div>
+					</div>
 			</div>
 
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.id) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.id, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.dstchannel) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.dstchannel, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.uniqueid) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.uniqueid, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.lastapp) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.lastapp, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.accountcode) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.accountcode, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.lastdata) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.lastdata, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.src) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.src, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.duration) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.duration, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.dst) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.dst, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.billsec) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.billsec, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.dcontext) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.dcontext, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.disposition) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.disposition, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.clid) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.clid, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.amaflags) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.amaflags, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					{{ form_label(form.channel) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.channel, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }} 
-				</div>
-				<div class="col-xs-2">
-					{{ form_label(form.userfield) }}
-				</div>
-				<div class="col-xs-4">
-					{{ form_widget(form.userfield, { 'attr': {
-						'style' : 'width:150px'
-					}} ) }}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-1">
-					{{ form_widget(form.search) }}
-				</div>
-				<div class="col-xs-1">
-					{{ form_widget(form.reset) }}
-				</div>
+			<div class="row form-group">
+					
 			</div>
 		{{ form_end(form) }}
 	</div>
@@ -201,8 +169,8 @@
 	<script type="text/javascript" src="/js/jquery.datetimepicker.js"></script>
 	<script type="text/javascript">
 		jQuery('.datetimepicker').datetimepicker({
-			 format:'Y-m-d',
-			 timepicker:false,
+			 format:'Y-m-d H:i',
+			 step:10,
 		});
 	</script>
 {% endblock %}

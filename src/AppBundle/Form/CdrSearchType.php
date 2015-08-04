@@ -17,108 +17,77 @@ class CdrSearchType extends AbstractType
         $builder
             ->add('id', null, array(
                 'required' => false,
-                'label' => 'ID: ',
+                'label' => 'ID',
             ))
-            
-            ->add('calldate_from', 'datetime', array(
+            ->add('calldate_from', 'text', array(
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Call Date From: ',
-                'date_format' => 'yyyy-MM-dd  HH:mm',
-                // 'months' => array('01', '02', '03', '04', '05', '06',
-                //     '07', '08', '09', '10', '11', '12'),
-                'hours' => array('00', '01', '02', '03', '04', '05', '06',
-                    '07', '08', '09', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23'),
-                'minutes' => array('00', '01', '02', '03', '04', '05', '06',
-                    '07', '08', '09', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24',
-                    '25', '26', '27', '28', '29', '30', '31', '32', '33',
-                    '34', '35', '36', '37', '38', '39', '40', '41', '42',
-                    '43', '44', '45', '46', '47', '48', '49', '50', '51',
-                    '52', '53', '54', '55', '56', '57', '58', '59'),
-                  'date_widget'=> 'single_text',
+                'label' => 'Call Date From',
             ))
-
-            ->add('calldate_to', 'datetime', array(
+            ->add('calldate_to', 'text', array(
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Call Date To: ',
-                'date_format' => 'yyyy-MM-dd  HH:mm',
-                // 'months' => array('01', '02', '03', '04', '05', '06',
-                //     '07', '08', '09', '10', '11', '12'),
-                'hours' => array('00', '01', '02', '03', '04', '05', '06',
-                    '07', '08', '09', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23'),
-                'minutes' => array('00', '01', '02', '03', '04', '05', '06',
-                    '07', '08', '09', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24',
-                    '25', '26', '27', '28', '29', '30', '31', '32', '33',
-                    '34', '35', '36', '37', '38', '39', '40', '41', '42',
-                    '43', '44', '45', '46', '47', '48', '49', '50', '51',
-                    '52', '53', '54', '55', '56', '57', '58', '59'),
-                'date_widget'=> 'single_text',
+                'label' => 'Call Date To',
             ))
-            
             ->add('uniqueid', null, array(
                 'required' => false,
-                'label' => 'uniqueid: ',
+                'label' => 'UniqueID',
             ))
             ->add('accountcode', null, array(
                 'required' => false,
-                'label' => 'accountcode: ',
+                'label' => 'Accountcode',
             ))
             ->add('src', null, array(
                 'required' => false,
-                'label' => 'src: ',
+                'label' => 'Source',
             ))
             ->add('dst', null, array(
                 'required' => false,
-                'label' => 'dst: ',
+                'label' => 'Destination',
             ))
             ->add('dcontext', null, array(
                 'required' => false,
-                'label' => 'dcontext: ',
+                'label' => 'Dcontext',
             ))
             ->add('clid', null, array(
                 'required' => false,
-                'label' => 'clid: ',
+                'label' => 'Clid',
             ))
             ->add('channel', null, array(
                 'required' => false,
-                'label' => 'channel: ',
+                'label' => 'Channel',
             ))
             ->add('dstchannel', null, array(
                 'required' => false,
-                'label' => 'dstchannel: ',
+                'label' => 'Dstchannel',
             ))
             ->add('lastapp', null, array(
                 'required' => false,
-                'label' => 'lastapp: ',
+                'label' => 'Lastapp',
             ))
             ->add('lastdata', null, array(
                 'required' => false,
-                'label' => 'lastdata: ',
+                'label' => 'Lastdata',
             ))
             ->add('duration', null, array(
                 'required' => false,
-                'label' => 'duration: ',
+                'label' => 'Duration',
             ))
             ->add('billsec', null, array(
                 'required' => false,
-                'label' => 'billsec: ',
+                'label' => 'Billsec',
             ))
             ->add('disposition', null, array(
                 'required' => false,
-                'label' => 'disposition: ',
+                'label' => 'Disposition',
             ))
             ->add('amaflags', null, array(
                 'required' => false,
-                'label' => 'amaflags: ',
+                'label' => 'Amaflags',
             ))
             ->add('userfield', null, array(
                 'required' => false,
-                'label' => 'userfield: ',
+                'label' => 'Userfield',
             ))
         ;
     }

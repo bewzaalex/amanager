@@ -2,9 +2,10 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css">
 {% endblock %}
 
-{% block body -%}
+{# {% block body -%}
 	<h1>Search for events</h1>
 	<div class="row">
 		{{ form_start(form) }}
@@ -28,8 +29,281 @@
     	</div>
 		{{ form_end(form) }}
 	</div>
+{% endblock %} #}
+
+{% block body -%}
+	<h1>Search for events</h1>
+	<div class="row">
+		{{ form_start(form) }}
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.eventtime_from) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.eventtime_from, { 'attr': {
+						'style' : 'width:150px',
+						'class' : 'datetimepicker'
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.eventtime_to) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.eventtime_to, { 'attr': {
+						'style' : 'width:150px',
+						'class' : 'datetimepicker'
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.id) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.id, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.eventtype) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.eventtype, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.uniqueid) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.uniqueid, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.linkedid) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.linkedid, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.cid_name) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.cid_name, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.cid_num) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.cid_num, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.cid_ani) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.cid_ani, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.cid_rdnis) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.cid_rdnis, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.cid_dnid) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.cid_dnid, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.channame) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.channame, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.exten) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.exten, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.context) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.context, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.src) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.src, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.dst) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.dst, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.channel) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.channel, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.dstchannel) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.dstchannel, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.appname) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.appname, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.appdata) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.appdata, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.accountcode) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.accountcode, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.peer) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.peer, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.amaflags) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.amaflags, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.userdeftype) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.userdeftype, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2">
+					{{ form_label(form.eventextra) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.eventextra, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}					
+				</div>
+				<div class="col-xs-2">
+					{{ form_label(form.userfield) }}
+				</div>
+				<div class="col-xs-4">
+					{{ form_widget(form.userfield, { 'attr': {
+						'style' : 'width:150px',
+					}} ) }}
+				</div>
+			</div>
+
+			<div class="row">
+				{# <div class="col-xs-1"> #}
+					{{ form_widget(form.search) }}
+				{# </div> #}
+				{# <div class="col-xs-1"> #}
+					{{ form_widget(form.reset) }}
+				{# </div> #}
+			</div>
+		{{ form_end(form) }}
+	</div>
 {% endblock %}
 
 {% block javascripts %}
-	<script src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.datetimepicker.js"></script>
+	<script type="text/javascript">
+		jQuery('.datetimepicker').datetimepicker({
+			 format:'Y-m-d H:i',
+			 step:10,
+		});
+	</script>
 {% endblock %}

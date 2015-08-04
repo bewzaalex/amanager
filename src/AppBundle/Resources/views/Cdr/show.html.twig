@@ -47,10 +47,6 @@
         </div>
     </div> #}
 
-    <audio controls>
-        <source src="/audio/{{ entity.uniqueid|trim }}.ogg" type="audio/ogg">
-    </audio>
-
     <table class="table table-bordered text-nowrap">
         <tbody>
             <tr>
@@ -121,7 +117,7 @@
                 <th>Userfield</th>
                 <td>{{ entity.userfield }}</td>
             </tr>
-            <!-- <tr>
+            <tr>
                 <th>Audio</th>
                 <td>
                     <audio controls>
@@ -129,7 +125,7 @@
                         No audio found.
                     </audio>
                 </td>
-            </tr> -->
+            </tr>
         </tbody>
     </table>
 

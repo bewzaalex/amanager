@@ -7,11 +7,6 @@
 {% block body -%}
     <h1>Call Detail Record</h1>
 
-    {# total items count #}
-    <div class="count">
-        Total calls: {{ pagination.getTotalItemCount }}
-    </div>
-
     <div>
     <table class="table table-bordered text-nowrap">
         <thead>
@@ -63,12 +58,14 @@
     </table>
     </div>
 
+    {# total items count #}
+    <div class="count">
+        Show from {{ pagination.currentPageNumber * ItemsPerPage }} to {{ pagination.currentPageNumber * ItemsPerPage + ItemsPerPage }} of {{ pagination.getTotalItemCount }} records
+    </div>
+
     {# display navigation #}
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
     </div>
 
-    {# {{ dump(pagination) }} #}
-    {# {{ dump(request) }} #}
-
-    {% endblock %}
+{% endblock %}

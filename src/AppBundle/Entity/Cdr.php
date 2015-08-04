@@ -19,18 +19,18 @@ class Cdr
     protected $id;
 
     /**
-    * @ORM\Column(type="datetime")
-    */
+     * @ORM\Column(type="datetime")
+     */
     protected $calldate;
 
 	/**
-    * @ORM\Column(type="string", length=32)
-    */
+     * @ORM\Column(type="string", length=32)
+     */
     protected $uniqueid;
 
     /**
-    * @ORM\Column(type="string", length=20)
-    */
+     * @ORM\Column(type="string", length=20)
+     */
     protected $accountcode;
 
     /**

@@ -110,6 +110,7 @@ class CelController extends Controller
             'method' => 'GET',
         ));
         $form->add('search', 'submit', array('label' => 'Search'));
+        $form->add('reset', 'reset', array('label' => 'Reset'));
 
         return array(
             'form' => $form->createView(),
@@ -145,94 +146,24 @@ class CelController extends Controller
             /**
              * Event Time
              */
-            $EventTimeFrom = "";
-            if ($search['cel_search']['eventtime_from']['date']['year'] != "") {
-                $EventTimeFrom .= $search['cel_search']['eventtime_from']['date']['year'];
-            } else {
-                $EventTimeFrom .= '%';
-            }
-            if ($search['cel_search']['eventtime_from']['date']['month'] != "") {
-                $EventTimeFrom .= '-'.$search['cel_search']['eventtime_from']['date']['month'];
-            } else {
-                $EventTimeFrom .= '-%';
-            }
-            if ($search['cel_search']['eventtime_from']['date']['day'] != "") {
-                $EventTimeFrom .= '-'.$search['cel_search']['eventtime_from']['date']['day'];
-            } else {
-                $EventTimeFrom .= '-%';
-            }
-            if ($search['cel_search']['eventtime_from']['time']['hour'] != "") {
-                $EventTimeFrom .= ' '.$search['cel_search']['eventtime_from']['time']['hour'];
-            } else {
-                $EventTimeFrom .= ' %';
-            }
-            if ($search['cel_search']['eventtime_from']['time']['minute'] != "") {
-                $EventTimeFrom .= ':'.$search['cel_search']['eventtime_from']['time']['minute'];
-            } else {
-                $EventTimeFrom .= ':%';
-            }
-            $EventTimeFrom .= '%';
-            $EventTimeTo = "";
-            if ($search['cel_search']['eventtime_to']['date']['year'] != "") {
-                $EventTimeTo .= $search['cel_search']['eventtime_to']['date']['year'];
-            } else {
-                $EventTimeTo .= '%';
-            }
-            if ($search['cel_search']['eventtime_to']['date']['month'] != "") {
-                $EventTimeTo .= '-'.$search['cel_search']['eventtime_to']['date']['month'];
-            } else {
-                $EventTimeTo .= '-%';
-            }
-            if ($search['cel_search']['eventtime_to']['date']['day'] != "") {
-                $EventTimeTo .= '-'.$search['cel_search']['eventtime_to']['date']['day'];
-            } else {
-                $EventTimeTo .= '-%';
-            }
-            if ($search['cel_search']['eventtime_to']['time']['hour'] != "") {
-                $EventTimeTo .= ' '.$search['cel_search']['eventtime_to']['time']['hour'];
-            } else {
-                $EventTimeTo .= ' %';
-            }
-            if ($search['cel_search']['eventtime_to']['time']['minute'] != "") {
-                $EventTimeTo .= ':'.$search['cel_search']['eventtime_to']['time']['minute'];
-            } else {
-                $EventTimeTo .= ':%';
-            }
-            $EventTimeTo .= '%';
             if ((
-                    $search['cel_search']['eventtime_from']['date']['year'] != "" ||
-                    $search['cel_search']['eventtime_from']['date']['month'] != "" ||
-                    $search['cel_search']['eventtime_from']['date']['day'] != "" ||
-                    $search['cel_search']['eventtime_from']['time']['hour'] != "" ||
-                    $search['cel_search']['eventtime_from']['time']['minute'] != ""
+                    $search['cel_search']['eventtime_from'] != ""
                 ) && (
-                    $search['cel_search']['eventtime_to']['date']['year'] != "" ||
-                    $search['cel_search']['eventtime_to']['date']['month'] != "" ||
-                    $search['cel_search']['eventtime_to']['date']['day'] != "" ||
-                    $search['cel_search']['eventtime_to']['time']['hour'] != "" ||
-                    $search['cel_search']['eventtime_to']['time']['minute'] != ""
+                    $search['cel_search']['eventtime_to'] != ""
                 )) {
                     $query->andWhere('event.eventtime between :eventtime_from and :eventtime_to')
-                    ->setParameter('eventtime_from', $EventTimeFrom)
-                    ->setParameter('eventtime_to', $EventTimeTo);
+                    ->setParameter('eventtime_from', $search['cel_search']['eventtime_from'].'%')
+                    ->setParameter('eventtime_to', $search['cel_search']['eventtime_to'].'%');
             } elseif (
-                    $search['cel_search']['eventtime_from']['date']['year'] != "" ||
-                    $search['cel_search']['eventtime_from']['date']['month'] != "" ||
-                    $search['cel_search']['eventtime_from']['date']['day'] != "" ||
-                    $search['cel_search']['eventtime_from']['time']['hour'] != "" ||
-                    $search['cel_search']['eventtime_from']['time']['minute'] != ""
+                    $search['cel_search']['eventtime_from'] != ""
                 ) {
                     $query->andWhere('event.eventtime > :eventtime_from')
-                    ->setParameter('eventtime_from', $EventTimeFrom);
+                    ->setParameter('eventtime_from', $search['cel_search']['eventtime_from'].'%');
             } elseif (
-                    $search['cel_search']['eventtime_to']['date']['year'] != "" ||
-                    $search['cel_search']['eventtime_to']['date']['month'] != "" ||
-                    $search['cel_search']['eventtime_to']['date']['day'] != "" ||
-                    $search['cel_search']['eventtime_to']['time']['hour'] != "" ||
-                    $search['cel_search']['eventtime_to']['time']['minute'] != ""
+                    $search['cel_search']['eventtime_to'] != ""
                 ) {
                     $query->andWhere('event.eventtime < :eventtime_to')
-                    ->setParameter('eventtime_to', $EventTimeTo);
+                    ->setParameter('eventtime_to', $search['cel_search']['eventtime_to'].'%');
             }
 
             /**
