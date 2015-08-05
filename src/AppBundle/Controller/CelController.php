@@ -31,7 +31,7 @@ class CelController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT event FROM AppBundle:Cel event ORDER BY event.id DESC");
-        $query->setMaxResults('10');
+        $query->setMaxResults('20');
         $entities = $query->getResult();
 
         return array(

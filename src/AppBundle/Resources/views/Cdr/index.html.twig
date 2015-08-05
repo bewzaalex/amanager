@@ -2,66 +2,261 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css">
 {% endblock %}
 
 {% block body -%}
-    <h1>Call Detail Record</h1>
+    <div class="container">
 
-    <table class="table table-bordered text-nowrap">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Calldate</th>
-                <th>Uniqueid</th>
-                <th>Accountcode</th>
-                <th>Src</th>
-                <th>Dst</th>
-                {#<th>Dcontext</th>#}
-                <th>Clid</th>
-                {#<th>Channel</th>#}
-                {#<th>Dstchannel</th>#}
-                {#<th>Lastapp</th>#}
-                {#<th>Lastdata</th>#}
-                <th>Duration</th>
-                <th>Billsec</th>
-                <th>Disposition</th>
-                {#<th>Amaflags</th>#}
-                {#<th>Userfield</th>#}
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in pagination %}
-            <tr>
-                <td><a href="{{ path('cdr_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{% if entity.calldate %}{{ entity.calldate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                {#<td>{{ entity.uniqueid }}</td>#}
-                <td><a href="{{ path('cel_show_by_uniqueid', { 'uniqueid': entity.uniqueid|trim }) }}">{{ entity.uniqueid }}</a></td>
-                <td>{{ entity.accountcode }}</td>
-                <td>{{ entity.src }}</td>
-                <td>{{ entity.dst }}</td>
-                {#<td>{{ entity.dcontext }}</td>#}
-                <td>{{ entity.clid }}</td>
-                {#<td>{{ entity.channel }}</td>#}
-                {#<td>{{ entity.dstchannel }}</td>#}
-                {#<td>{{ entity.lastapp }}</td>#}
-                {#<td>{{ entity.lastdata }}</td>#}
-                <td>{{ entity.duration }}</td>
-                <td>{{ entity.billsec }}</td>
-                <td>{{ entity.disposition }}</td>
-                {#<td>{{ entity.amaflags }}</td>#}
-                {#<td>{{ entity.userfield }}</td>#}
-        {% endfor %}
-        </tbody>
-    </table>
+        {# Page title #}
+        <div class="row">
+            <h1>Call Detail Record</h1>            
+        </div>
 
-    {# total items count #}
-    <div class="count">
-        Show from {{ pagination.currentPageNumber * ItemsPerPage }} to {{ pagination.currentPageNumber * ItemsPerPage + ItemsPerPage }} of {{ pagination.getTotalItemCount }} records
+        {# Search form show/hide button #}
+        <div class="row">
+            <a
+                class="btn btn-active"
+                role="button"
+                data-toggle="collapse"
+                href="#collapseSearch"
+                aria-expanded="false"
+                aria-controls="collapseSearch"
+            >
+                Show search form
+            </a>
+        </div>
+
+        {# Search form #}
+        <div class="row">
+            <div class="collapse" id="collapseSearch">
+                <div class="well">
+                    {{ form_start(form, { 'attr': {
+                        'class' : 'form-horizontal'
+                    }} ) }}
+                        {# First form column #}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {# {{ form_label(form.calldate_from) }} #}
+                                {{ form_widget(form.calldate_from, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'datetimepicker form-control',
+                                    'placeholder' : 'Call Date From',
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.calldate_to) }} #}
+                                {{ form_widget(form.calldate_to, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'datetimepicker form-control',
+                                    'placeholder' : 'Call Date To'
+                                }} ) }}     
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.id) }} #}
+                                {{ form_widget(form.id, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Id'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.uniqueid) }} #}
+                                {{ form_widget(form.uniqueid, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'UniqueID'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.src) }} #}
+                                {{ form_widget(form.src, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Source'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.dst) }} #}
+                                {{ form_widget(form.dst, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Destination'
+                                }} ) }}
+                            </div>
+                        </div>
+                        {# Second form column #}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {# {{ form_label(form.channel) }} #}
+                                {{ form_widget(form.channel, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Channel'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.dstchannel) }} #}
+                                {{ form_widget(form.dstchannel, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'DstChannel'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.duration) }} #}
+                                {{ form_widget(form.duration, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Duration'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.billsec) }} #}
+                                {{ form_widget(form.billsec, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'BillSec'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.disposition) }} #}
+                                {{ form_widget(form.disposition, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Disposition'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.userfield) }} #}
+                                {{ form_widget(form.userfield, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'UserField'
+                                }} ) }}
+                            </div>
+                        </div>
+                        {# Third form column #}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {# {{ form_label(form.dcontext) }} #}
+                                {{ form_widget(form.dcontext, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Dcontext'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.clid) }} #}
+                                {{ form_widget(form.clid, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Clid'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.lastapp) }} #}
+                                {{ form_widget(form.lastapp, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'LastApp'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.lastdata) }} #}
+                                {{ form_widget(form.lastdata, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'LastData'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.amaflags) }} #}
+                                {{ form_widget(form.amaflags, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'Amaflags'
+                                }} ) }}
+                            </div>
+                            <div class="form-group">
+                                {# {{ form_label(form.accountcode) }} #}
+                                {{ form_widget(form.accountcode, { 'attr': {
+                                    'style' : 'width:150px',
+                                    'class' : 'form-control',
+                                    'placeholder' : 'AccountCode'
+                                }} ) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.search, { 'attr': {
+                                'class' : 'btn btn-primary'
+                            }} ) }}
+                            {{ form_widget(form.reset, { 'attr': {
+                                'class' : 'btn btn-danger'
+                            }} ) }}
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+
+        {# Calls/Search results table #}
+        <div class="row">
+            <table class="table table-bordered text-nowrap table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Calldate</th>
+                        <th>Uniqueid</th>
+                        <th>Accountcode</th>
+                        <th>Src</th>
+                        <th>Dst</th>
+                        <th>Clid</th>
+                        <th>Duration</th>
+                        <th>Billsec</th>
+                        <th>Disposition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in pagination %}
+                    <tr>
+                        <td><a href="{{ path('cdr_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{% if entity.calldate %}{{ entity.calldate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td><a href="{{ path('cel_show_by_uniqueid', { 'uniqueid': entity.uniqueid|trim }) }}">{{ entity.uniqueid }}</a></td>
+                        <td>{{ entity.accountcode }}</td>
+                        <td>{{ entity.src }}</td>
+                        <td>{{ entity.dst }}</td>
+                        <td>{{ entity.clid }}</td>
+                        <td>{{ entity.duration }}</td>
+                        <td>{{ entity.billsec }}</td>
+                        <td>{{ entity.disposition }}</td>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# total items count FIXME: wrong "from"#}
+        <div class="row">
+            Show from {{ pagination.currentPageNumber * ItemsPerPage }} to {{ pagination.currentPageNumber * ItemsPerPage }} of {{ pagination.getTotalItemCount }} records
+        </div>
+
+        {# Table page navigation #}
+        <div class="row">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 
-    {# display navigation #}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+    {# {{ dump(request) }} #}
+{% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.datetimepicker.js"></script>
+    <script type="text/javascript">
+        jQuery('.datetimepicker').datetimepicker({
+             format:'Y-m-d H:i',
+             step:10,
+        });
+    </script>
 {% endblock %}

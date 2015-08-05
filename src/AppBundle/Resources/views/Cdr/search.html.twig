@@ -8,137 +8,156 @@
 {% block body -%}
 	<h1>Search for calls</h1>
 	<div class="row">
-		{{ form_start(form) }}
-
+		{{ form_start(form, { 'attr': {
+			'class' : 'form-horizontal'
+	    }} ) }}
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group">
-							{{ form_label(form.calldate_from) }}
+							{# {{ form_label(form.calldate_from) }} #}
 							{{ form_widget(form.calldate_from, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'datetimepicker form-control'
+								'class' : 'datetimepicker form-control',
+								'placeholder' : 'Call Date From'
 							}} ) }}		
 						</div>
 						<div class="form-group">
-							{{ form_label(form.id) }}
+							{# {{ form_label(form.id) }} #}
 							{{ form_widget(form.id, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Id'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.uniqueid) }}
+							{# {{ form_label(form.uniqueid) }} #}
 							{{ form_widget(form.uniqueid, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'UniqueID'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.accountcode) }}
+							{# {{ form_label(form.accountcode) }} #}
 							{{ form_widget(form.accountcode, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'AccountCode'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.src) }}
+							{# {{ form_label(form.src) }} #}
 							{{ form_widget(form.src, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Source'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.dst) }}
+							{# {{ form_label(form.dst) }} #}
 							{{ form_widget(form.dst, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Destination'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.dcontext) }}
+							{# {{ form_label(form.dcontext) }} #}
 							{{ form_widget(form.dcontext, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Dcontext'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.clid) }}
+							{# {{ form_label(form.clid) }} #}
 							{{ form_widget(form.clid, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Clid'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.channel) }}
+							{# {{ form_label(form.channel) }} #}
 							{{ form_widget(form.channel, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Channel'
 							}} ) }}
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							{{ form_label(form.calldate_to) }}
+							{# {{ form_label(form.calldate_to) }} #}
 							{{ form_widget(form.calldate_to, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'datetimepicker form-control'
+								'class' : 'datetimepicker form-control',
+								'placeholder' : 'Call Date To'
 							}} ) }}		
 						</div>
 						<div class="form-group">
-						{{ form_label(form.dstchannel) }}
+						{# {{ form_label(form.dstchannel) }} #}
 						{{ form_widget(form.dstchannel, { 'attr': {
 							'style' : 'width:150px',
-							'class' : 'form-control'
+							'class' : 'form-control',
+							'placeholder' : 'DstChannel'
 						}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.lastapp) }}
+							{# {{ form_label(form.lastapp) }} #}
 							{{ form_widget(form.lastapp, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'LastApp'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.lastdata) }}
+							{# {{ form_label(form.lastdata) }} #}
 							{{ form_widget(form.lastdata, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'LastData'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.duration) }}
+							{# {{ form_label(form.duration) }} #}
 							{{ form_widget(form.duration, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Duration'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.billsec) }}
+							{# {{ form_label(form.billsec) }} #}
 							{{ form_widget(form.billsec, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'BillSec'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.disposition) }}
+							{# {{ form_label(form.disposition) }} #}
 							{{ form_widget(form.disposition, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Disposition'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.amaflags) }}
+							{# {{ form_label(form.amaflags) }} #}
 							{{ form_widget(form.amaflags, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'Amaflags'
 							}} ) }}
 						</div>
 						<div class="form-group">
-							{{ form_label(form.userfield) }}
+							{# {{ form_label(form.userfield) }} #}
 							{{ form_widget(form.userfield, { 'attr': {
 								'style' : 'width:150px',
-								'class' : 'form-control'
+								'class' : 'form-control',
+								'placeholder' : 'UserField'
 							}} ) }}
 						</div>
 						</div>
